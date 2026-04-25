@@ -39,7 +39,7 @@ interface OpenCodeMemConfig {
   autoCaptureMaxIterations?: number;
   autoCaptureIterationTimeout?: number;
   autoCaptureLanguage?: string;
-  memoryProvider?: "openai-chat" | "openai-responses" | "anthropic";
+  memoryProvider?: "openai-chat" | "openai-responses" | "anthropic" | "kimi";
   memoryModel?: string;
   memoryApiUrl?: string;
   memoryApiKey?: string;
@@ -102,7 +102,7 @@ const DEFAULTS: Required<
   memoryModel?: string;
   memoryApiUrl?: string;
   memoryApiKey?: string;
-  memoryProvider?: "openai-chat" | "openai-responses" | "anthropic";
+  memoryProvider?: "openai-chat" | "openai-responses" | "anthropic" | "kimi";
   memoryTemperature?: number | false;
   memoryExtraParams?: Record<string, unknown>;
   opencodeProvider?: string;
@@ -286,9 +286,10 @@ const CONFIG_TEMPLATE = `{
   
   "autoCaptureEnabled": true,
   
-  // Provider type: "openai-chat" | "openai-responses" | "anthropic"
+  // Provider type: "openai-chat" | "openai-responses" | "anthropic" | "kimi"
   // Note: "openai-chat" is a generic OpenAI API-compatible mode.
   // Any service that follows the OpenAI Chat Completions API can use it via custom "memoryApiUrl".
+  // "kimi" uses the Moonshot AI API (OpenAI-compatible) with default https://api.moonshot.cn/v1.
   "memoryProvider": "openai-chat",
   
   // REQUIRED for auto-capture (all 3 must be set):
